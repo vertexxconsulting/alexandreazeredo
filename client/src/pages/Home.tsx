@@ -73,8 +73,8 @@ const authorityPhotoSrc = "/images/alexandre-about-secondary.jpeg";
 const whatsappNumber = "553186417690";
 
 const navItems = [
-  { label: "Serviços", href: "#servicos" },
   { label: "Mentoria", href: "#mentoria" },
+  { label: "Serviços", href: "#servicos" },
   { label: "Sobre Mim", href: "#sobre" },
   { label: "Palestras", href: "#palestras" },
   { label: "Podcast", href: "#podcast" },
@@ -275,7 +275,7 @@ export default function Home() {
     window.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const form = event.currentTarget;
     const data = new FormData(form);
@@ -296,14 +296,41 @@ export default function Home() {
       return;
     }
 
-    const emailTo = "Alexandre@resultgestaopro.com.br";
-    const subject = encodeURIComponent("Contato via Site");
-    const body = encodeURIComponent(`Nome: ${name}\nE-mail: ${email}\n\nMensagem:\n${message}`);
-    
-    const mailtoUrl = `mailto:${emailTo}?subject=${subject}&body=${body}`;
-    form.reset();
-    toast.success("Abrindo seu cliente de e-mail...");
-    window.location.href = mailtoUrl;
+    const loadToast = toast.loading("Enviando sua mensagem...");
+
+    const object = Object.fromEntries(data);
+    // Add the Web3Forms access key
+    object.access_key = "50885259-f9f5-40de-a759-0fd12ddb025d";
+    object.subject = "Nova submissão de Contato via Site";
+    // Also include a friendly from name
+    object.from_name = name;
+
+    const json = JSON.stringify(object);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json"
+        },
+        body: json
+      });
+      
+      const result = await response.json();
+      if (result.success) {
+        toast.dismiss(loadToast);
+        toast.success("Mensagem enviada com sucesso! Entraremos em contato em breve.");
+        form.reset();
+        setContactModalOpen(false); // Close modal on success if it's open
+      } else {
+        toast.dismiss(loadToast);
+        toast.error("Erro ao enviar a mensagem. Tente novamente mais tarde.");
+      }
+    } catch (error) {
+      toast.dismiss(loadToast);
+      toast.error("Erro de conexão. Verifique sua internet e tente novamente.");
+    }
   };
 
   return (
@@ -350,54 +377,164 @@ export default function Home() {
 
       <main id="top">
         {/* HERO SECTION */}
-        <section className="hero-section" aria-labelledby="hero-title">
-          <div className="hero-orb hero-orb-one" aria-hidden="true" />
-          <div className="hero-orb hero-orb-two" aria-hidden="true" />
-          <div className="container hero-grid">
+        <section 
+          className="hero-section dark-section" 
+          id="inicio" 
+          aria-labelledby="hero-title"
+          style={{
+            backgroundImage: 'url(/images/background.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center top',
+            position: 'relative'
+          }}
+        >
+          {/* Overlay to darken background (Gradient: Darker on left for text, transparent on right for image) */}
+          <div style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            background: 'linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0.1) 100%)', 
+            zIndex: 1 
+          }}></div>
+
+          {/* Linhas Douradas (Arcos decorativos atrás do Alexandre) */}
+          <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1, pointerEvents: 'none' }}>
+            <svg width="100%" height="100%" style={{ position: 'absolute', bottom: 0, right: 0 }}>
+              {/* Círculos grandes para criar o efeito de arcos varrendo a tela */}
+              <circle cx="85%" cy="110%" r="55%" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeOpacity="0.35" />
+              <circle cx="95%" cy="120%" r="65%" fill="none" stroke="var(--gold)" strokeWidth="1" strokeOpacity="0.25" />
+              <circle cx="75%" cy="130%" r="75%" fill="none" stroke="var(--gold)" strokeWidth="2" strokeOpacity="0.15" />
+              <circle cx="100%" cy="100%" r="45%" fill="none" stroke="var(--gold)" strokeWidth="1" strokeOpacity="0.4" />
+            </svg>
+          </div>
+          
+          {/* Imagem do Alexandre Recortada */}
+          <img 
+            src="/images/alexandre.png" 
+            alt="Alexandre Azeredo" 
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              right: 'calc(50vw - 360px)', /* Moved even closer to the center/left */
+              height: '82%', 
+              maxHeight: '750px',
+              width: 'auto',
+              zIndex: 2,
+              pointerEvents: 'none',
+              filter: 'drop-shadow(-10px 10px 30px rgba(0,0,0,0.6))'
+            }}
+          />
+          
+          <div className="container hero-grid" style={{ position: 'relative', zIndex: 3 }}>
             <div className="hero-copy" data-reveal>
-              <div className="eyebrow light-eyebrow"><span className="eyebrow-line" /> Tecnologia transforma negócios.</div>
-              <h1 id="hero-title">
-                Transforme Tecnologia em <em>Resultado</em>
+              <div className="eyebrow light-eyebrow"><span className="eyebrow-line" /> TECNOLOGIA TRANSFORMA NEGÓCIOS.</div>
+              <h1 className="hero-heading" style={{ fontFamily: '"Playfair Display", serif', fontWeight: 600 }}>
+                Transforme Tecnologia em <em style={{ color: 'var(--gold)' }}>Resultados Reais.</em>
               </h1>
               <p className="hero-subtitle">
                 Há mais de 32 anos atuando entre Tecnologia, Estratégia e Negócios, ajudando empresas a transformar tecnologia em resultados e profissionais a tomarem melhores decisões sobre suas carreiras.
               </p>
-              <p className="hero-subtitle" style={{marginTop: '1rem'}}>
-                Apoio empresas e lideranças na construção de estratégias, estruturas, processos e decisões capazes de aumentar a contribuição da Tecnologia para o negócio.
-              </p>
               <div className="hero-actions">
                 <a className="button button-gold" href="#contato" onClick={handleSectionNavigation}>
-                  Entrar em contato <ArrowUpRight size={18} aria-hidden="true" />
+                  ENTRAR EM CONTATO <ArrowUpRight size={18} aria-hidden="true" />
                 </a>
                 <a className="text-link light-link" href="#servicos" onClick={handleSectionNavigation}>
-                  Conhecer serviços <ArrowDown size={16} aria-hidden="true" />
+                  CONHECER SERVIÇOS <ArrowDown size={16} aria-hidden="true" />
                 </a>
               </div>
             </div>
+            {/* Visual vazio para manter o grid layout e espaçamento */}
+            <div className="hero-visual" style={{ display: 'none' }} />
+          </div>
+        </section>
 
-            <div className="hero-visual" data-reveal style={{ transitionDelay: "120ms" }}>
-              <div className="hero-image-frame">
-                <img src={heroPhotoSrc} alt="Alexandre Azeredo em ambiente corporativo" className="hero-photo" />
-                <div className="hero-photo-shade" aria-hidden="true" />
-                <div className="visual-kicker">ALEXANDRE AZEREDO / 32+ ANOS</div>
-                <div className="visual-caption">
-                  <span className="caption-dot" />
-                  <span>Experiência executiva aliada a resultados.</span>
-                </div>
+        {/* PROPOSTA DE VALOR */}
+        <section className="section" id="proposta-valor" style={{ padding: '6rem 0 3rem' }}>
+          <div className="container">
+            <div data-reveal style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
+              <div className="eyebrow" style={{ justifyContent: 'center' }}><span className="eyebrow-line" /> O DESAFIO E A SOLUÇÃO</div>
+              <h2 style={{ 
+                fontFamily: '"Playfair Display", serif', 
+                fontSize: 'clamp(2rem, 4vw, 2.5rem)', 
+                lineHeight: 1.2, 
+                marginTop: '1.5rem', 
+                marginBottom: '1.5rem',
+                color: 'var(--navy)'
+              }}>
+                A tecnologia não gera resultados sozinha.<br /> <em>Líderes estratégicos sim.</em>
+              </h2>
+              <p style={{ fontSize: '1.15rem', lineHeight: 1.7, color: '#4a5568', marginBottom: '1.5rem' }}>
+                A maioria das empresas investe pesado em TI sem ver retorno claro no negócio. Ao mesmo tempo, excelentes líderes técnicos enfrentam barreiras porque não conseguem traduzir a tecnologia para a linguagem estratégica do conselho.
+              </p>
+              <p style={{ fontSize: '1.15rem', lineHeight: 1.7, color: '#4a5568' }}>
+                Com mais de <strong>32 anos de experiência</strong> conectando estratégia, operações e tecnologia, eu fecho essa lacuna. Ajudo empresas a transformarem TI em vantagem competitiva real e oriento profissionais a conquistarem autoridade e acelerarem suas carreiras executivas.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        {/* MENTORIA RESULT */}
+        <section className="section credentials-section dark-section" id="mentoria" aria-labelledby="mentoria-title">
+          <div className="container">
+            <div className="section-heading split-heading" data-reveal>
+              <div>
+                <div className="eyebrow"><span className="eyebrow-line" /> Mentoria RESULT</div>
+                <h2 id="mentoria-title">Experiência não se compra.<br /><em>Mas a direção certa, sim.</em></h2>
+              </div>
+              <div>
+                <p>O mercado cobra inovação, mas a realidade exige execução. A Mentoria RESULT foi desenhada para quem não pode perder tempo testando caminhos errados.</p>
+                <p style={{ marginTop: '1rem' }}>Um espaço de troca estratégica, prático e focado no seu desafio real. <strong>A mentoria existe para transformar sua experiência em resultados e autoridade.</strong></p>
+              </div>
+            </div>
+
+            <div className="mentoria-split" style={{ gridTemplateColumns: '1fr 1fr', gap: '3rem', marginTop: '4rem' }}>
+              <div data-reveal className="credential-card" style={{ padding: '2.5rem', backgroundColor: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>Para Profissionais Seniores de TI</h3>
+                <p style={{ marginBottom: '1.5rem', color: 'rgba(255,255,255,0.7)' }}>Gerentes, Heads, Coordenadores e Especialistas que buscam acelerar a carreira executiva.</p>
+                <ul className="audience-list" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.75rem' }}>
+                  <li><Check size={18} aria-hidden="true" style={{color: '#C6A87C'}}/> Desenvolver visão de negócios</li>
+                  <li><Check size={18} aria-hidden="true" style={{color: '#C6A87C'}}/> Melhorar comunicação com a diretoria/C-Level</li>
+                  <li><Check size={18} aria-hidden="true" style={{color: '#C6A87C'}}/> Estruturar áreas e times de alta performance</li>
+                  <li><Check size={18} aria-hidden="true" style={{color: '#C6A87C'}}/> Transição de líder técnico para líder estratégico</li>
+                </ul>
+              </div>
+              
+              <div data-reveal className="credential-card" style={{ transitionDelay: '100ms', padding: '2.5rem', backgroundColor: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.1)' }}>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>Para Empresários e C-Levels</h3>
+                <p style={{ marginBottom: '1.5rem', color: 'rgba(255,255,255,0.7)' }}>CEOs, Diretores e Sócios que precisam que a tecnologia impulsione, e não trave, a empresa.</p>
+                <ul className="audience-list" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.75rem' }}>
+                  <li><Check size={18} aria-hidden="true" style={{color: '#C6A87C'}}/> Priorizar investimentos em TI sem desperdício</li>
+                  <li><Check size={18} aria-hidden="true" style={{color: '#C6A87C'}}/> Avaliar e gerenciar equipes ou fornecedores de TI</li>
+                  <li><Check size={18} aria-hidden="true" style={{color: '#C6A87C'}}/> Apoio na decisão de troca de ERPs e sistemas</li>
+                  <li><Check size={18} aria-hidden="true" style={{color: '#C6A87C'}}/> Traduzir o 'tecniquês' para as metas da empresa</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className="section-cta" data-reveal style={{ marginTop: '5rem' }}>
+              <div>
+                <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>Deseja participar da Mentoria RESULT?</h3>
+                <p style={{ maxWidth: '600px', color: 'rgba(255,255,255,0.7)', margin: 0 }}>
+                  A Mentoria RESULT possui vagas limitadas e um processo de seleção para garantir que eu posso realmente ajudar no seu desafio atual. Preencha o formulário para iniciar sua aplicação.
+                </p>
+              </div>
+              <div style={{ flexShrink: 0 }}>
+                <a className="button button-gold" href="#aplicacao" style={{ whiteSpace: 'nowrap' }}>
+                  INICIE SUA APLICAÇÃO <ArrowUpRight size={17} />
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* SERVIÇOS EM TI */}
+        {/* OUTRAS FORMAS DE ATUAÇÃO (Serviços em TI) */}
         <section className="section services-section" id="servicos" aria-labelledby="services-title">
           <div className="container">
             <div className="section-heading services-heading" data-reveal>
               <div>
-                <div className="eyebrow"><span className="eyebrow-line" /> Serviços em TI</div>
-                <h2 id="services-title">Soluções para <em>impulsionar negócios</em>.</h2>
+                <div className="eyebrow"><span className="eyebrow-line" /> Outras Formas de Atuação</div>
+                <h2 id="services-title">Consultoria e <em>Advisory</em>.</h2>
               </div>
-              <p>Experiência prática para orientar as decisões mais importantes de tecnologia na sua empresa.</p>
+              <p>Experiência prática para orientar as decisões mais importantes de tecnologia na sua empresa, através de projetos estruturados ou aconselhamento executivo.</p>
             </div>
             
             <div className="services-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
@@ -425,89 +562,10 @@ export default function Home() {
               })}
             </div>
 
-            {/* Diagnóstico de Tecnologia */}
-            <div className="diagnostic-block light-section" data-reveal style={{ marginTop: '4rem', padding: '3rem', borderRadius: '16px', border: '1px solid #eaeaea' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Sua Tecnologia está preparada para sustentar o crescimento da empresa?</h3>
-              <ul className="problem-list" style={{ marginBottom: '2rem' }}>
-                {diagnosticoPerguntas.map((pergunta, idx) => (
-                  <li key={idx} style={{ marginBottom: '0.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <Check size={15} aria-hidden="true" style={{ color: '#C6A87C' }} /> {pergunta}
-                  </li>
-                ))}
-              </ul>
-              <a className="button button-dark" href="#contato" onClick={handleSectionNavigation}>
-                Solicitar Diagnóstico de Tecnologia <ArrowUpRight size={17} />
-              </a>
-            </div>
-          </div>
-        </section>
-
-        {/* MENTORIA DE CARREIRA */}
-        <section className="section credentials-section dark-section" id="mentoria" aria-labelledby="mentoria-title">
-          <div className="container">
-            <div className="section-heading split-heading" data-reveal>
-              <div>
-                <div className="eyebrow"><span className="eyebrow-line" /> Mentoria de Carreira</div>
-                <h2 id="mentoria-title">Não existe um único caminho de sucesso em Tecnologia.<br /><em>Existe o caminho que faz mais sentido para você.</em></h2>
-              </div>
-              <div>
-                <p>Tecnologia oferece inúmeras possibilidades profissionais: Desenvolvimento, Dados, Cloud, Segurança, ERP, Projetos, Produto, Arquitetura, Governança, Consultoria ou Gestão.</p>
-                <p style={{ marginTop: '1rem' }}>O problema é que muitos profissionais passam anos acumulando cursos, certificações e experiências sem uma estratégia clara. <strong>A mentoria existe para ajudar a transformar experiência em direção.</strong></p>
-              </div>
-            </div>
-
-            <div className="mentoria-split">
-              <div data-reveal>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Para quem é a Mentoria</h3>
-                <p style={{ marginBottom: '1.5rem' }}>Profissionais de Tecnologia em nível:</p>
-                <ul className="audience-list" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem' }}>
-                  <li><Check size={15} aria-hidden="true" style={{color: '#C6A87C'}}/> Pleno</li>
-                  <li><Check size={15} aria-hidden="true" style={{color: '#C6A87C'}}/> Sênior</li>
-                  <li><Check size={15} aria-hidden="true" style={{color: '#C6A87C'}}/> Especialista</li>
-                  <li><Check size={15} aria-hidden="true" style={{color: '#C6A87C'}}/> Tech Lead</li>
-                  <li><Check size={15} aria-hidden="true" style={{color: '#C6A87C'}}/> Coordenador</li>
-                  <li><Check size={15} aria-hidden="true" style={{color: '#C6A87C'}}/> Gerente</li>
-                  <li><Check size={15} aria-hidden="true" style={{color: '#C6A87C'}}/> Consultor</li>
-                  <li><Check size={15} aria-hidden="true" style={{color: '#C6A87C'}}/> Gerente de Projetos</li>
-                  <li><Check size={15} aria-hidden="true" style={{color: '#C6A87C'}}/> Arquiteto</li>
-                  <li style={{ gridColumn: 'span 2' }}><Check size={15} aria-hidden="true" style={{color: '#C6A87C'}}/> Profissionais em transição dentro da área de TI</li>
-                </ul>
-              </div>
-              
-              <div data-reveal style={{ transitionDelay: '100ms' }}>
-                <ul className="problem-list">
-                  {mentoriaDores.map((dor, idx) => (
-                    <li key={idx} style={{ marginBottom: '0.75rem', opacity: 0.9 }}>
-                      "{dor}"
-                    </li>
-                  ))}
-                </ul>
-                <p style={{ marginTop: '1.5rem', padding: '1rem', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '8px' }}>
-                  Se você se identifica com algumas dessas perguntas, provavelmente não precisa apenas de mais conhecimento. <strong>Precisa de direção.</strong>
-                </p>
-              </div>
-            </div>
-
-            <div className="methodology-block" style={{ marginTop: '5rem' }}>
-              <div className="eyebrow" data-reveal><span className="eyebrow-line" /> Metodologia da Mentoria</div>
-              <div className="credentials-grid methodology-grid" style={{ marginTop: '2rem' }}>
-                {mentoriaMetodologia.map((item, index) => (
-                  <article className="credential-card" key={item.step} data-reveal style={{ transitionDelay: `${index * 50}ms` }}>
-                    <div className="card-topline"><span>{item.step}</span></div>
-                    <h3>{item.title}</h3>
-                    <p>{item.desc}</p>
-                  </article>
-                ))}
-              </div>
-            </div>
-
             <div className="section-cta" data-reveal style={{ marginTop: '4rem', textAlign: 'center' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Vamos conversar sobre sua carreira?</h3>
-              <p style={{ maxWidth: '600px', margin: '0 auto 2rem' }}>
-                Antes de falar sobre mentoria, quero entender seu momento profissional, suas dúvidas e onde você pretende chegar.
-              </p>
-              <a className="button button-gold" href="#contato" onClick={handleSectionNavigation}>
-                Agendar uma Conversa de Carreira <ArrowUpRight size={17} />
+              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Precisa de apoio estratégico para a sua empresa?</h3>
+              <a className="button button-dark" href="#contato" onClick={handleSectionNavigation}>
+                Fale sobre seu projeto <ArrowUpRight size={17} />
               </a>
             </div>
           </div>
@@ -525,10 +583,10 @@ export default function Home() {
             </div>
             <div className="about-copy" data-reveal style={{ transitionDelay: "120ms" }}>
               <div className="eyebrow"><span className="eyebrow-line" /> Sobre Mim</div>
-              <h2 id="about-title">32 anos de Tecnologia. Muitas <span style={{ whiteSpace: 'nowrap' }}>transformações.</span> <em>Mais aprendizados ainda.</em></h2>
-              <p>Há mais de 32 anos, atuo na interseção entre Tecnologia, Estratégia e Negócios, liderando transformações complexas, estruturando operações e ajudando empresas e profissionais a tomarem melhores decisões.</p>
-              <p>Minha trajetória inclui projetos e operações no Brasil e no exterior, com experiências na China, Indonésia e Paraguai, além da liderança de iniciativas em ERP, PMO, Governança, Cloud, Dados, CRM, Processos e Transformação Digital.</p>
-              <p>Hoje, além da atuação executiva, direciono parte da minha experiência para a mentoria de líderes e profissionais de tecnologia que buscam acelerar a carreira, ampliar visão estratégica e se preparar para posições de maior responsabilidade como Gerente, Head, CIO ou CTO.</p>
+              <h2 id="about-title">A autoridade se constrói na <em>prática.</em></h2>
+              <p>São mais de 32 anos liderando grandes transformações, desde implantações complexas de ERP e Cloud até reestruturações de times e operações no Brasil e no exterior (China, Indonésia, Paraguai).</p>
+              <p>Já ocupei as cadeiras de decisão. Sei exatamente o que o C-Level espera da Tecnologia e o que falta nos líderes técnicos para ascenderem na carreira corporativa.</p>
+              <p>Minha missão agora é encurtar o caminho de quem precisa de resultados: tanto empresas buscando eficiência quanto profissionais buscando protagonismo.</p>
             </div>
           </div>
           
@@ -726,8 +784,8 @@ export default function Home() {
             </div>
           </div>
         </section>
-        {/* VAMOS CONVERSAR (CTA) */}
-        <section className="section" id="vamos-conversar" style={{ padding: '6rem 0', textAlign: 'center' }}>
+        {/* APLICAÇÃO E CONTATO (CTA) */}
+        <section className="section dark-section" id="aplicacao" style={{ padding: '6rem 0', textAlign: 'center' }}>
           <div className="container">
             <div data-reveal style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
               <div className="eyebrow" style={{ justifyContent: 'center' }}><span className="eyebrow-line" /> VAMOS CONVERSAR</div>
@@ -740,34 +798,53 @@ export default function Home() {
                 marginBottom: '1.5rem',
                 maxWidth: '800px'
               }}>
-                Solicite seu orçamento gratuito agora
+                Dê o próximo passo na sua carreira.
               </h2>
               
               <p style={{ 
                 fontSize: '1.1rem', 
                 lineHeight: 1.6, 
                 maxWidth: '600px', 
-                margin: '0 auto 3rem' 
+                margin: '0 auto 3rem',
+                color: 'rgba(255,255,255,0.8)'
               }}>
-                Fale diretamente com a gente pelo WhatsApp ou e-mail e descubra o próximo passo da sua jornada em tecnologia.
+                Preencha o formulário abaixo para iniciar sua aplicação na Mentoria RESULT. Analisaremos seu perfil para entender se é o momento certo para acelerarmos seus resultados.
               </p>
               
               <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
-                <a 
+                <button 
                   className="button button-gold"
-                  href={`https://wa.me/5531986417690?text=${encodeURIComponent("Olá, Alexandre! Cheguei através do site e gostaria de conversar com você.")}`}
-                  target="_blank" 
-                  rel="noreferrer"
+                  onClick={() => setContactModalOpen(true)}
+                  style={{ padding: '1.2rem 2.5rem', fontSize: '1.1rem' }}
                 >
-                  Falar no WhatsApp <ArrowUpRight size={17} />
-                </a>
-                
-                <a 
-                  className="button button-outline"
-                  href="mailto:Alexandre@resultgestaopro.com.br"
-                >
-                  <Mail size={16} style={{ marginRight: '0.2rem' }} /> Alexandre@resultgestaopro.com.br
-                </a>
+                  PREENCHER FORMULÁRIO <ArrowUpRight size={17} />
+                </button>
+              </div>
+
+              <div style={{ marginTop: '4rem', paddingTop: '3rem', borderTop: '1px solid rgba(255,255,255,0.1)', width: '100%', maxWidth: '800px' }}>
+                <p style={{ fontSize: '0.95rem', color: 'rgba(255,255,255,0.6)', marginBottom: '1.5rem' }}>Possui dúvidas sobre outros serviços (Consultoria, Palestras, etc)? Fale diretamente comigo:</p>
+                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                  <a 
+                    className="button"
+                    style={{ border: '1px solid rgba(255,255,255,0.3)', color: '#fff' }}
+                    href={`https://wa.me/5531986417690?text=${encodeURIComponent("Olá, Alexandre! Cheguei através do site e gostaria de conversar com você.")}`}
+                    target="_blank" 
+                    rel="noreferrer"
+                  >
+                    Falar no WhatsApp <ArrowUpRight size={16} />
+                  </a>
+                  
+                  <a 
+                    className="button"
+                    style={{ border: '1px solid rgba(255,255,255,0.3)', color: '#fff', cursor: 'pointer' }}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setContactModalOpen(true);
+                    }}
+                  >
+                    <Mail size={16} style={{ marginRight: '0.4rem' }} /> Alexandre@resultgestaopro.com.br
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -797,6 +874,10 @@ export default function Home() {
               <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <span style={{ fontSize: '0.9rem', fontWeight: 500, color: '#fff' }}>E-mail</span>
                 <input id="email" name="email" type="email" placeholder="voce@email.com" required style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(0,0,0,0.2)', color: '#fff' }} />
+              </label>
+              <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                <span style={{ fontSize: '0.9rem', fontWeight: 500, color: '#fff' }}>Telefone / WhatsApp</span>
+                <input id="telefone" name="telefone" type="tel" placeholder="(11) 99999-9999" style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(0,0,0,0.2)', color: '#fff' }} />
               </label>
               <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 <span style={{ fontSize: '0.9rem', fontWeight: 500, color: '#fff' }}>Mensagem</span>
@@ -836,7 +917,7 @@ export default function Home() {
           </div>
           <div className="footer-column">
             <p className="footer-label">Contato</p>
-            <a href="mailto:Alexandre@resultgestaopro.com.br"><Mail size={15} /> Alexandre@resultgestaopro.com.br</a>
+            <a style={{ cursor: 'pointer' }} onClick={(e) => { e.preventDefault(); setContactModalOpen(true); }}><Mail size={15} /> Alexandre@resultgestaopro.com.br</a>
             <a href="https://www.linkedin.com/in/alexandreazeredo" target="_blank" rel="noreferrer"><Linkedin size={15} /> linkedin.com/in/alexandreazeredo</a>
           </div>
         </div>

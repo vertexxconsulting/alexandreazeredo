@@ -478,7 +478,6 @@ export default function Home() {
               </div>
               
               <div data-reveal style={{ transitionDelay: '100ms' }}>
-                <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Principais Dores</h3>
                 <ul className="problem-list">
                   {mentoriaDores.map((dor, idx) => (
                     <li key={idx} style={{ marginBottom: '0.75rem', opacity: 0.9 }}>
@@ -529,7 +528,7 @@ export default function Home() {
             </div>
             <div className="about-copy" data-reveal style={{ transitionDelay: "120ms" }}>
               <div className="eyebrow"><span className="eyebrow-line" /> Sobre Mim</div>
-              <h2 id="about-title">32 anos de Tecnologia. Muitas transformações. <em>Mais aprendizados ainda.</em></h2>
+              <h2 id="about-title">32 anos de Tecnologia. Muitas <span style={{ whiteSpace: 'nowrap' }}>transformações.</span> <em>Mais aprendizados ainda.</em></h2>
               <p>Há mais de 32 anos, atuo na interseção entre Tecnologia, Estratégia e Negócios, liderando transformações complexas, estruturando operações e ajudando empresas e profissionais a tomarem melhores decisões.</p>
               <p>Minha trajetória inclui projetos e operações no Brasil e no exterior, com experiências na China, Indonésia e Paraguai, além da liderança de iniciativas em ERP, PMO, Governança, Cloud, Dados, CRM, Processos e Transformação Digital.</p>
               <p>Hoje, além da atuação executiva, direciono parte da minha experiência para a mentoria de líderes e profissionais de tecnologia que buscam acelerar a carreira, ampliar visão estratégica e se preparar para posições de maior responsabilidade como Gerente, Head, CIO ou CTO.</p>

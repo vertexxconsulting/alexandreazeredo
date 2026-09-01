@@ -451,6 +451,9 @@ h1 em, h2 em { color: var(--gold-light); font-style: italic; }
 
 @media (max-width: 780px) {
   .hero-image-frame { inset: 0 10% 2% 3%; }
+  .hero-image-frame::before { inset: 12px; }
+  .visual-kicker { top: 10px; left: 16px; }
+  .visual-caption { right: 14px; bottom: 14px; left: 14px; }
   .hero-brand-chip { right: -1px; bottom: 13%; }
   .hero-brand-chip img { width: 66px; height: 41px; }
   .about-secondary-photo { right: 1%; width: 115px; height: 150px; }

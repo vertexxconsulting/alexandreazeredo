@@ -379,6 +379,7 @@ h1 em, h2 em { color: var(--gold-light); font-style: italic; }
   .credential-card { min-height: 245px; }
   .services-grid, .testimonials-grid { grid-template-columns: 1fr; margin-top: 45px; }
   .service-card { min-height: auto; }
+  .about-grid { grid-template-columns: 1fr; gap: 50px; }
 }
 @media (max-width: 780px) {
   .hero-subtitle-full { display: none; }

@@ -414,6 +414,7 @@ h1 em, h2 em { color: var(--gold-light); font-style: italic; }
   .trust-item > span:last-child { font-size: 10px; }
   .section-heading h2, .results-intro h2, .contact-copy h2, .faq-intro h2, .about-copy h2 { font-size: 43px; }
   .credentials-grid { grid-template-columns: 1fr; }
+  .methodology-grid { grid-template-columns: 1fr !important; }
   .credential-card { min-height: 0; padding-bottom: 28px; }
   .card-eyebrow { margin-top: 28px; }
   .impact-strip { grid-template-columns: 1fr; gap: 14px; }

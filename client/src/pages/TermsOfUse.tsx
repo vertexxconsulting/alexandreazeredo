@@ -52,7 +52,7 @@ const sections = [
   {
     title: "8. Contato e legislação",
     body: [
-      "Dúvidas sobre estes Termos de Uso podem ser encaminhadas para contato@alexandreazeredo.com.br. Este documento é interpretado de acordo com a legislação brasileira, observadas as regras de competência previstas na legislação aplicável.",
+      "Dúvidas sobre estes Termos de Uso podem ser encaminhadas para Alexandre@resultgestaopro.com.br. Este documento é interpretado de acordo com a legislação brasileira, observadas as regras de competência previstas na legislação aplicável.",
     ],
   },
 ];
@@ -63,7 +63,7 @@ export default function TermsOfUse() {
       <header className="legal-header">
         <div className="container legal-header-inner">
           <Link className="legal-brand" href="/" aria-label="Alexandre Azeredo — voltar ao início">
-            <img className="legal-brand-logo" src="/images/alexandre-logo-standard.png" alt="Alexandre Azeredo" />
+            <img className="legal-brand-logo" src="/images/Logo.png" alt="Alexandre Azeredo" />
             <span><strong>Alexandre Azeredo</strong><small>Mentor Executivo · CIO Advisor</small></span>
           </Link>
           <Link className="legal-back" href="/"><ArrowLeft size={15} aria-hidden="true" /> Voltar ao site</Link>

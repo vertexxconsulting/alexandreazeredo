@@ -65,7 +65,8 @@ import {
   X,
 } from "lucide-react";
 
-const logoDarkSrc = "/images/alexandre-logo-standard.png";
+const topLogoSrc = "/images/Logo.png";
+const footerLogoSrc = "/images/logo_result.png";
 const heroPhotoSrc = "/images/alexandre-hero.jpeg";
 const aboutPhotoSrc = "/images/alexandre-about.jpeg";
 const authorityPhotoSrc = "/images/alexandre-about-secondary.jpeg";
@@ -219,7 +220,7 @@ export default function Home() {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setPalestrasBgIndex((prev) => (prev + 1) % 5);
+      setPalestrasBgIndex((prev) => (prev + 1) % 4);
     }, 4500);
     return () => clearInterval(interval);
   }, []);
@@ -294,19 +295,14 @@ export default function Home() {
       return;
     }
 
-    const whatsappMessage = [
-      "Olá, Alexandre! Vim pelo site.",
-      "",
-      `Nome: ${name}`,
-      `E-mail: ${email}`,
-      `Mensagem: ${message}`,
-    ].join("\n");
+    const emailTo = "Alexandre@resultgestaopro.com.br";
+    const subject = encodeURIComponent("Contato via Site");
+    const body = encodeURIComponent(`Nome: ${name}\nE-mail: ${email}\n\nMensagem:\n${message}`);
     
-    const whatsappUrl = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(whatsappMessage)}`;
+    const mailtoUrl = `mailto:${emailTo}?subject=${subject}&body=${body}`;
     form.reset();
-    toast.success("Redirecionando para o WhatsApp...");
-    const whatsappWindow = window.open(whatsappUrl, "_blank", "noopener,noreferrer");
-    if (!whatsappWindow) window.location.assign(whatsappUrl);
+    toast.success("Abrindo seu cliente de e-mail...");
+    window.location.href = mailtoUrl;
   };
 
   return (
@@ -315,8 +311,8 @@ export default function Home() {
       <header className={`site-header ${scrolled ? "is-scrolled" : ""}`}>
         <div className="container header-inner">
           <a className="brand" href="#top" aria-label="Alexandre Azeredo — início">
-            <span className="brand-logo-wrap">
-              <img src={logoDarkSrc} alt="Logo Alexandre Azeredo" className="brand-logo" />
+            <span className="brand-logo-wrap" style={{ width: '95px', height: '50px', marginLeft: '-7px', transform: 'translateY(-14px)' }}>
+              <img src={topLogoSrc} alt="Logo Alexandre Azeredo" className="brand-logo" />
             </span>
             <span className="brand-copy">
               <strong>Alexandre Azeredo</strong>
@@ -332,7 +328,7 @@ export default function Home() {
             ))}
             <div className="nav-social">
               <a href="https://www.linkedin.com/in/alexandreazeredo" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={20} /></a>
-              <a href="https://www.instagram.com/alexandreazeredo" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
+              <a href="https://www.instagram.com/alexandreazeredo_" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={20} /></a>
             </div>
             <a className="nav-cta" href="#contato" onClick={handleSectionNavigation}>
               Fale comigo <ArrowUpRight size={16} aria-hidden="true" />
@@ -589,10 +585,7 @@ export default function Home() {
         >
           <div className="container">
 
-            {/* Layout Dividido: Esquerda (Textos) / Direita (Slider) */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '4rem', alignItems: 'flex-start' }}>
-              
-              {/* Coluna da Esquerda: Heading + Abas + Conteúdo */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '4rem', alignItems: 'center' }}>
               <div>
                 {/* Heading */}
                 <div data-reveal>
@@ -623,11 +616,6 @@ export default function Home() {
                     <p style={{ marginTop: '1.25rem' }}>Sobre o que acontece quando tecnologia encontra estratégia. Quando inovação encontra cultura. Quando conhecimento técnico precisa encontrar visão de negócios.</p>
                     <h3 style={{ fontSize: '1.25rem', marginTop: '2rem', marginBottom: '0.75rem' }}>Experiência real. Casos reais. Aprendizados reais.</h3>
                     <p>Levo para o palco experiências acumuladas em mais de três décadas de carreira: projetos que deram certo, decisões difíceis, transformações empresariais, erros, liderança e aprendizados que somente a prática proporciona.</p>
-                    <div style={{ marginTop: '1.75rem' }}>
-                      <Link href="/galeria-palestras" className="button button-dark" onClick={() => window.scrollTo(0,0)}>
-                        Ver momentos no palco <ArrowUpRight size={17} />
-                      </Link>
-                    </div>
                   </div>
                 )}
 
@@ -644,37 +632,37 @@ export default function Home() {
                   </div>
                 )}
               </div>
-            </div> {/* Fim Coluna Esquerda */}
+            </div>
 
-            {/* Coluna da Direita: Slider 9:16 */}
+            {/* Coluna da Direita: Slider Horizontal */}
             <div data-reveal style={{ display: 'flex', justifyContent: 'center' }}>
-              <div style={{ width: '100%', maxWidth: '300px', aspectRatio: '9/16', overflow: 'hidden', borderRadius: '12px', position: 'relative', boxShadow: '0 16px 36px rgba(0,0,0,0.35)' }}>
+              <div style={{ width: '100%', maxWidth: '600px', aspectRatio: '16/9', overflow: 'hidden', borderRadius: '12px', position: 'relative', boxShadow: '0 16px 36px rgba(0,0,0,0.35)' }}>
                 <div style={{ display: 'flex', width: '100%', height: '100%', transition: 'transform 0.8s cubic-bezier(0.4,0,0.2,1)', transform: `translateX(-${palestrasBgIndex * 100}%)` }}>
-                  {[1, 2, 3, 4, 5].map((num) => (
+                  {['palestra.jpeg', 'palestra1.jpeg', 'palestra2.png', 'palestra3.png'].map((filename, idx) => (
                     <img
-                      key={num}
-                      src={`/images/galeria-palestras/palestra-${num}.jpeg`}
+                      key={idx}
+                      src={`/images/galeria-palestras/${filename}`}
                       style={{ width: '100%', height: '100%', objectFit: 'cover', flexShrink: 0 }}
-                      alt={`Alexandre Azeredo palestrando - Momento ${num}`}
+                      alt={`Alexandre Azeredo palestrando - Momento ${idx + 1}`}
                       loading="lazy"
                     />
                   ))}
                 </div>
                 {/* Indicadores */}
                 <div style={{ position: 'absolute', bottom: '1rem', left: 0, right: 0, display: 'flex', justifyContent: 'center', gap: '6px' }}>
-                  {[0,1,2,3,4].map((idx) => (
+                  {[0, 1, 2, 3].map((idx) => (
                     <button
                       key={idx}
                       onClick={() => setPalestrasBgIndex(idx)}
                       aria-label={`Foto ${idx + 1}`}
-                      style={{ width: '6px', height: '6px', borderRadius: '50%', background: palestrasBgIndex === idx ? '#C6A87C' : 'rgba(255,255,255,0.4)', transition: 'background 0.3s', padding: 0, border: 'none', cursor: 'pointer' }}
+                      style={{ width: '8px', height: '8px', borderRadius: '50%', background: palestrasBgIndex === idx ? '#C6A87C' : 'rgba(255,255,255,0.4)', transition: 'background 0.3s', padding: 0, border: 'none', cursor: 'pointer' }}
                     />
                   ))}
                 </div>
               </div>
             </div>
 
-          </div> {/* Fim Grid Layout */}
+          </div>
 
             {/* CTA compacto */}
             <div data-reveal className="palestras-cta-grid" style={{ marginTop: '3rem', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(0,0,0,0.15)' }}>
@@ -687,9 +675,7 @@ export default function Home() {
               <div style={{ flexShrink: 0 }}>
                 <a
                   className="button button-gold"
-                  href={`https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent("Olá, Alexandre! Gostaria de conversar sobre a possibilidade de uma palestra para o nosso evento/empresa.")}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href={`mailto:Alexandre@resultgestaopro.com.br?subject=${encodeURIComponent("Convite para Palestra")}&body=${encodeURIComponent("Olá, Alexandre! Gostaria de conversar sobre a possibilidade de uma palestra para o nosso evento/empresa.")}`}
                   style={{ whiteSpace: 'nowrap' }}
                 >
                   Convidar para palestrar <ArrowUpRight size={17} />
@@ -716,7 +702,7 @@ export default function Home() {
               Como posso te ajudar?
             </h2>
             <p style={{ textAlign: 'center', marginBottom: '2rem', color: 'rgba(255,255,255,0.7)', fontSize: '0.95rem' }}>
-              Preencha os campos e entrarei em contato via WhatsApp.
+              Preencha os campos e eu retornarei o contato o mais breve possível.
             </p>
             <form onSubmit={(e) => { handleSubmit(e); setContactModalOpen(false); }} noValidate style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
               <label style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
@@ -732,7 +718,7 @@ export default function Home() {
                 <textarea id="mensagem" name="mensagem" rows={4} placeholder="Como posso ajudar? (Mentoria, Palestra, Serviços...)" required style={{ padding: '0.75rem', borderRadius: '8px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(0,0,0,0.2)', color: '#fff', resize: 'vertical' }} />
               </label>
               <button className="button button-gold" type="submit" style={{ marginTop: '1rem', justifyContent: 'center' }}>
-                Enviar para WhatsApp <ArrowUpRight size={17} />
+                Enviar Mensagem <ArrowUpRight size={17} />
               </button>
             </form>
           </div>
@@ -743,13 +729,15 @@ export default function Home() {
       <footer className="site-footer">
         <div className="container footer-grid">
           <div className="footer-brand">
-            <a className="brand footer-logo" href="#top">
-              <span className="brand-logo-wrap"><img src={logoDarkSrc} alt="Logo Alexandre Azeredo" className="brand-logo" /></span>
+            <a className="brand footer-logo" href="#top" style={{ width: 'auto', marginLeft: '-84px' }}>
+              <span className="brand-logo-wrap" style={{ width: 'min(276px, 80vw)', height: '140px' }}>
+                <img src={footerLogoSrc} alt="Logo Alexandre Azeredo" className="brand-logo" style={{ objectPosition: 'left center' }} />
+              </span>
             </a>
             <p>Estratégia que posiciona.<br />Liderança que transforma.</p>
             <div className="social-links">
               <a href="https://www.linkedin.com/in/alexandreazeredo" target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a>
-              <a href="https://www.instagram.com/alexandreazeredo" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={17} /></a>
+              <a href="https://www.instagram.com/alexandreazeredo_" target="_blank" rel="noreferrer" aria-label="Instagram"><Instagram size={17} /></a>
               <a href="https://www.youtube.com/@papodevalorpodcast10" target="_blank" rel="noreferrer" aria-label="Podcast Papo de Valor"><Mic2 size={17} /></a>
             </div>
           </div>
@@ -762,7 +750,7 @@ export default function Home() {
           </div>
           <div className="footer-column">
             <p className="footer-label">Contato</p>
-            <a href="mailto:contato@alexandreazeredo.com.br"><Mail size={15} /> contato@alexandreazeredo.com.br</a>
+            <a href="mailto:Alexandre@resultgestaopro.com.br"><Mail size={15} /> Alexandre@resultgestaopro.com.br</a>
             <a href="https://www.linkedin.com/in/alexandreazeredo" target="_blank" rel="noreferrer"><Linkedin size={15} /> linkedin.com/in/alexandreazeredo</a>
           </div>
         </div>

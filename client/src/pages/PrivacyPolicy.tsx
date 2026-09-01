@@ -5,7 +5,7 @@ const sections = [
   {
     title: "1. Quem trata os dados",
     body: [
-      "Esta Política de Privacidade explica como Alexandre Azeredo trata dados pessoais coletados por meio deste site e de seus canais de contato. Para dúvidas ou solicitações relacionadas a dados pessoais, escreva para contato@alexandreazeredo.com.br.",
+      "Esta Política de Privacidade explica como Alexandre Azeredo trata dados pessoais coletados por meio deste site e de seus canais de contato. Para dúvidas ou solicitações relacionadas a dados pessoais, escreva para Alexandre@resultgestaopro.com.br.",
       "O tratamento observa a Lei Geral de Proteção de Dados Pessoais (Lei nº 13.709/2018) e os princípios de finalidade, adequação, necessidade, transparência, segurança e prevenção.",
     ],
   },
@@ -48,7 +48,7 @@ const sections = [
     title: "7. Seus direitos",
     body: [
       "Nos termos da legislação aplicável, você pode solicitar confirmação da existência de tratamento, acesso, correção, anonimização, bloqueio ou eliminação de dados desnecessários, portabilidade quando regulamentada, informação sobre compartilhamentos e revisão de decisões automatizadas, quando aplicável.",
-      "Para exercer seus direitos, envie uma solicitação para contato@alexandreazeredo.com.br com detalhes suficientes para localizar o pedido. Poderemos solicitar informações adicionais para confirmar a identidade e proteger os dados contra solicitações indevidas.",
+      "Para exercer seus direitos, envie uma solicitação para Alexandre@resultgestaopro.com.br com detalhes suficientes para localizar o pedido. Poderemos solicitar informações adicionais para confirmar a identidade e proteger os dados contra solicitações indevidas.",
     ],
   },
   {
@@ -78,7 +78,7 @@ export default function PrivacyPolicy() {
       <header className="legal-header">
         <div className="container legal-header-inner">
           <Link className="legal-brand" href="/" aria-label="Alexandre Azeredo — voltar ao início">
-            <img className="legal-brand-logo" src="/images/alexandre-logo-standard.png" alt="Alexandre Azeredo" />
+            <img className="legal-brand-logo" src="/images/Logo.png" alt="Alexandre Azeredo" />
             <span><strong>Alexandre Azeredo</strong><small>Mentor Executivo · CIO Advisor</small></span>
           </Link>
           <Link className="legal-back" href="/"><ArrowLeft size={15} aria-hidden="true" /> Voltar ao site</Link>

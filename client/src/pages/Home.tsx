@@ -77,6 +77,7 @@ const navItems = [
   { label: "Mentoria", href: "#mentoria" },
   { label: "Sobre Mim", href: "#sobre" },
   { label: "Palestras", href: "#palestras" },
+  { label: "Podcast", href: "#podcast" },
 ];
 
 const servicos = [
@@ -528,18 +529,6 @@ export default function Home() {
               <p>Há mais de 32 anos, atuo na interseção entre Tecnologia, Estratégia e Negócios, liderando transformações complexas, estruturando operações e ajudando empresas e profissionais a tomarem melhores decisões.</p>
               <p>Minha trajetória inclui projetos e operações no Brasil e no exterior, com experiências na China, Indonésia e Paraguai, além da liderança de iniciativas em ERP, PMO, Governança, Cloud, Dados, CRM, Processos e Transformação Digital.</p>
               <p>Hoje, além da atuação executiva, direciono parte da minha experiência para a mentoria de líderes e profissionais de tecnologia que buscam acelerar a carreira, ampliar visão estratégica e se preparar para posições de maior responsabilidade como Gerente, Head, CIO ou CTO.</p>
-              
-              <div className="podcast-highlight light-section" style={{ marginTop: '2rem', padding: '1.5rem', borderRadius: '12px' }}>
-                <h4 style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.1rem', marginBottom: '0.5rem' }}>
-                  <Mic2 size={18} /> Host do Papo de Valor
-                </h4>
-                <p style={{ fontSize: '0.95rem', color: '#555', margin: 0 }}>
-                  Podcast dedicado a Tecnologia, Inovação, Carreira e Empreendedorismo. Converso com executivos, especialistas, empreendedores e líderes de mercado para discutir tendências, experiências reais e ideias capazes de transformar negócios e carreiras.
-                </p>
-                <a className="text-link" href="https://www.youtube.com/@papodevalorpodcast10" target="_blank" rel="noreferrer" style={{ marginTop: '1rem', display: 'inline-flex' }}>
-                  Conhecer o Podcast <ArrowUpRight size={16} />
-                </a>
-              </div>
             </div>
           </div>
           
@@ -686,7 +675,103 @@ export default function Home() {
           </div>
         </section>
 
+        {/* PODCAST */}
+        <section 
+          className="section podcast-section dark-section" 
+          id="podcast" 
+          aria-labelledby="podcast-title"
+          style={{ 
+            position: 'relative',
+            backgroundImage: 'url("/images/banner.jpg")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            paddingTop: '5rem',
+            paddingBottom: '5rem'
+          }}
+        >
+          {/* Overlay para leitura */}
+          <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, backgroundColor: 'rgba(10, 31, 61, 0.9)', zIndex: 0 }}></div>
+          
+          <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+            <div data-reveal style={{ textAlign: 'center', marginBottom: '3rem' }}>
+              <div className="eyebrow" style={{ justifyContent: 'center' }}><span className="eyebrow-line" /> Host do Papo de Valor</div>
+              <h2 id="podcast-title" style={{ marginTop: '1rem' }}>
+                Podcast <em>Papo de Valor</em>
+              </h2>
+            </div>
+            
+            <div className="about-grid" style={{ alignItems: 'center' }}>
+              <div className="about-copy" data-reveal>
+                <img src="/images/logo_papodevalor.jpg" alt="Logo Papo de Valor" style={{ maxWidth: '250px', marginBottom: '1.5rem', borderRadius: '50%', border: '2px solid rgba(255, 255, 255, 0.1)', boxShadow: '0 8px 24px rgba(0,0,0,0.4)' }} loading="lazy" />
+                <p style={{ fontSize: '1.1rem', lineHeight: 1.6, color: 'rgba(255,255,255,0.9)' }}>
+                  Podcast dedicado a Tecnologia, Inovação, Carreira e Empreendedorismo. Converso com executivos, especialistas, empreendedores e líderes de mercado para discutir tendências, experiências reais e ideias capazes de transformar negócios e carreiras.
+                </p>
+                <a className="button button-gold" href="https://www.youtube.com/@papodevalorpodcast10" target="_blank" rel="noreferrer" style={{ marginTop: '2rem', display: 'inline-flex' }}>
+                  Acompanhar no YouTube <Play size={17} style={{ marginLeft: '0.5rem', fill: 'currentColor' }} />
+                </a>
+              </div>
 
+              <div className="about-visual" data-reveal style={{ display: 'flex', height: '100%', alignItems: 'center' }}>
+                <div style={{ 
+                  width: '100%',
+                  borderRadius: '16px', 
+                  border: '4px solid var(--navy, #0a1f3d)',
+                  boxShadow: '0 0 0 1px var(--gold, #c9a961), 0 20px 40px rgba(0,0,0,0.3)',
+                  overflow: 'hidden'
+                }}>
+                  <img src="/images/papodevalor.jpeg" alt="Alexandre Azeredo no Papo de Valor" loading="lazy" style={{ width: '100%', height: 'auto', display: 'block' }} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        {/* VAMOS CONVERSAR (CTA) */}
+        <section className="section" id="vamos-conversar" style={{ padding: '6rem 0', textAlign: 'center' }}>
+          <div className="container">
+            <div data-reveal style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div className="eyebrow" style={{ justifyContent: 'center' }}><span className="eyebrow-line" /> VAMOS CONVERSAR</div>
+              
+              <h2 style={{ 
+                fontFamily: '"Playfair Display", serif', 
+                fontSize: 'clamp(2rem, 5vw, 3rem)', 
+                lineHeight: 1.2, 
+                marginTop: '1rem', 
+                marginBottom: '1.5rem',
+                maxWidth: '800px'
+              }}>
+                Solicite seu orçamento gratuito agora
+              </h2>
+              
+              <p style={{ 
+                fontSize: '1.1rem', 
+                lineHeight: 1.6, 
+                maxWidth: '600px', 
+                margin: '0 auto 3rem' 
+              }}>
+                Fale diretamente com a gente pelo WhatsApp ou e-mail e descubra o próximo passo da sua jornada em tecnologia.
+              </p>
+              
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                <a 
+                  className="button button-gold"
+                  href={`https://wa.me/5531986417690?text=${encodeURIComponent("Olá, Alexandre! Cheguei através do site e gostaria de conversar com você.")}`}
+                  target="_blank" 
+                  rel="noreferrer"
+                >
+                  Falar no WhatsApp <ArrowUpRight size={17} />
+                </a>
+                
+                <a 
+                  className="button button-outline"
+                  href="mailto:Alexandre@resultgestaopro.com.br"
+                >
+                  <Mail size={16} style={{ marginRight: '0.2rem' }} /> Alexandre@resultgestaopro.com.br
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
 
       </main>
 
@@ -747,6 +832,7 @@ export default function Home() {
             <a href="#mentoria" onClick={handleSectionNavigation}>Mentoria</a>
             <a href="#sobre" onClick={handleSectionNavigation}>Sobre Mim</a>
             <a href="#palestras" onClick={handleSectionNavigation}>Palestras</a>
+            <a href="#podcast" onClick={handleSectionNavigation}>Podcast</a>
           </div>
           <div className="footer-column">
             <p className="footer-label">Contato</p>

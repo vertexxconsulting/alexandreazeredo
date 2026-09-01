@@ -340,6 +340,9 @@ h1 em, h2 em { color: var(--gold-light); font-style: italic; }
 .footer-bottom a:hover { color: var(--gold-light); }
 .footer-bottom i { width: 1px; height: 12px; background: rgba(255, 255, 255, 0.25); }
 
+.mentoria-split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 4rem; }
+.palestras-cta-grid { display: grid; grid-template-columns: 1fr auto; gap: 2rem; align-items: center; }
+
 [data-reveal] { opacity: 0; transform: translateY(20px); transition: opacity 700ms var(--ease-out), transform 700ms var(--ease-out); }
 [data-reveal].is-visible { opacity: 1; transform: translateY(0); }
 
@@ -394,6 +397,9 @@ h1 em, h2 em { color: var(--gold-light); font-style: italic; }
   .podcast-copy { max-width: 600px; }
   .section-cta { align-items: flex-start; flex-direction: column; }
   .section-cta .button { width: auto; }
+  .mentoria-split { grid-template-columns: 1fr; gap: 2.5rem; }
+  .palestras-cta-grid { grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }
+  .palestras-cta-grid .button { justify-content: center; }
 }
 
 @media (max-width: 480px) {

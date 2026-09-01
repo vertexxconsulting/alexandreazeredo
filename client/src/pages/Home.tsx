@@ -459,7 +459,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mentoria-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', marginTop: '4rem' }}>
+            <div className="mentoria-split">
               <div data-reveal>
                 <h3 style={{ fontSize: '1.25rem', marginBottom: '1rem' }}>Para quem é a Mentoria</h3>
                 <p style={{ marginBottom: '1.5rem' }}>Profissionais de Tecnologia em nível:</p>
@@ -677,7 +677,7 @@ export default function Home() {
           </div> {/* Fim Grid Layout */}
 
             {/* CTA compacto */}
-            <div data-reveal style={{ marginTop: '3rem', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(0,0,0,0.15)', display: 'grid', gridTemplateColumns: '1fr auto', gap: '2rem', alignItems: 'center' }}>
+            <div data-reveal className="palestras-cta-grid" style={{ marginTop: '3rem', padding: '2rem', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)', backgroundColor: 'rgba(0,0,0,0.15)' }}>
               <div>
                 <h3 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', fontFamily: '"Playfair Display", serif', fontWeight: 500 }}>Para empresas, universidades e eventos</h3>
                 <p style={{ fontSize: '0.88rem', opacity: 0.8, lineHeight: 1.6 }}>

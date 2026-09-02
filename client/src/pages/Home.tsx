@@ -40,7 +40,6 @@ const whatsappNumber = "553186417690";
 
 const navItems = [
   { label: "Mentoria", href: "#mentoria" },
-  { label: "Serviços", href: "#servicos" },
   { label: "Sobre Mim", href: "#sobre" },
   { label: "Palestras", href: "#palestras" },
   { label: "Podcast", href: "#podcast" },
@@ -455,108 +454,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* OUTRAS FORMAS DE ATUAÇÃO (Serviços em TI) */}
-        <section className="section services-section" id="servicos" aria-labelledby="services-title">
-          <div className="container">
-            <div className="section-heading services-heading" data-reveal>
-              <div>
-                <div className="eyebrow"><span className="eyebrow-line" /> Outras Formas de Atuação</div>
-                <h2 id="services-title">Consultoria e <em>Advisory</em>.</h2>
-              </div>
-              <div style={{ maxWidth: '600px' }}>
-                <p style={{ fontSize: '1.25rem', color: 'var(--navy)', marginBottom: '1rem', lineHeight: 1.4 }}>
-                  Sua empresa investe em tecnologia.<br/>
-                  <strong>Mas ela realmente gera resultado?</strong>
-                </p>
-                <p style={{ fontSize: '1.05rem', color: 'var(--slate)', marginBottom: '1rem' }}>ERP, CRM, Inteligência Artificial, dados, automação, Cloud, cibersegurança...</p>
-                <p style={{ fontSize: '1.05rem', color: 'var(--slate)', lineHeight: 1.6 }}>Nunca houve tantas possibilidades — e talvez nunca tenha sido tão difícil para um empresário decidir onde investir, o que priorizar e o que realmente pode gerar valor para o negócio.</p>
-              </div>
-            </div>
 
-            <div data-reveal className="consulting-card">
-              <p style={{ fontWeight: 600, color: 'var(--navy)', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
-                Muitas empresas possuem bons sistemas, fornecedores e equipes, mas continuam convivendo com problemas conhecidos:
-              </p>
-              
-              <ul className="consulting-grid">
-                <li className="consulting-item">
-                  <span>Investimentos elevados em tecnologia sem conseguir demonstrar o retorno</span>
-                </li>
-                <li className="consulting-item">
-                  <span>Muitos dados e pouca informação para tomar decisões</span>
-                </li>
-                <li className="consulting-item">
-                  <span>Processos ineficientes sendo simplesmente digitalizados</span>
-                </li>
-                <li className="consulting-item">
-                  <span>ERP e CRM utilizados muito abaixo do seu potencial</span>
-                </li>
-                <li className="consulting-item">
-                  <span>Pressão para investir em IA sem saber onde existe um verdadeiro caso de negócio</span>
-                </li>
-                <li className="consulting-item">
-                  <span>Sistemas que não conversam e geram controles paralelos e retrabalho</span>
-                </li>
-                <li className="consulting-item">
-                  <span>Tecnologia distante das prioridades estratégicas da empresa</span>
-                </li>
-                <li className="consulting-item">
-                  <span>Riscos de segurança e continuidade que o empresário nem sempre consegue enxergar</span>
-                </li>
-                <li className="consulting-item">
-                  <span>Dificuldade para avaliar se o que a equipe ou os fornecedores propõem faz sentido</span>
-                </li>
-              </ul>
-
-              <div style={{ 
-                marginTop: '2rem', 
-                paddingTop: '1.5rem', 
-                borderTop: '1px solid rgba(10,31,61,0.08)',
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '1rem'
-              }}>
-                <p style={{ fontWeight: 600, color: 'var(--navy)', fontSize: '1.05rem' }}>É justamente nesse ponto que posso ajudar.</p>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
-                  <p style={{ color: 'var(--slate)', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>Você não precisa se tornar especialista em tecnologia para tomar boas decisões sobre tecnologia.</p>
-                  <p style={{ color: 'var(--slate)', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>Como seu Advisor, atuo ao lado do empresário e da liderança para traduzir tecnologia para a linguagem dos negócios, questionar investimentos, identificar oportunidades e ajudar a definir prioridades.</p>
-                </div>
-              </div>
-            </div>
-            
-            <div className="services-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
-              {servicos.map((service, index) => {
-                const Icon = service.icon;
-                return (
-                  <article className="service-card" key={index} data-reveal style={{ transitionDelay: `${index * 50}ms`, display: 'flex', flexDirection: 'column' }}>
-                    <div style={{ minHeight: '120px' }}>
-                      <div className="service-meta"><Icon size={27} strokeWidth={1.35} aria-hidden="true" /></div>
-                      <h3>{service.title}</h3>
-                      <p className="service-audience">{service.text}</p>
-                    </div>
-                    {service.bullets.length > 0 && (
-                      <>
-                        <div className="service-rule" />
-                        <ul style={{ flexGrow: 1 }}>
-                          {service.bullets.map((bullet) => (
-                            <li key={bullet}><Check size={15} aria-hidden="true" /> {bullet}</li>
-                          ))}
-                        </ul>
-                      </>
-                    )}
-                  </article>
-                );
-              })}
-            </div>
-
-            <div className="section-cta" data-reveal style={{ marginTop: '4rem', textAlign: 'center' }}>
-              <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Precisa de apoio estratégico para a sua empresa?</h3>
-              <a className="button button-dark" href="#contato" onClick={handleSectionNavigation}>
-                Fale sobre seu projeto <ArrowUpRight size={17} />
-              </a>
-            </div>
-          </div>
-        </section>
 
         {/* SOBRE NÓS */}
         <section className="section about-section" id="sobre" aria-labelledby="about-title">

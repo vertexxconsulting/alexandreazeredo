@@ -1,41 +1,7 @@
 import { type FormEvent, type MouseEvent, useEffect, useState, useRef } from "react";
 import { Link } from "wouter";
 
-function CountUp({ value, prefix = "", suffix = "" }: { value: number, prefix?: string, suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        const duration = 2000;
-        const startTime = performance.now();
-        
-        const animate = (currentTime: number) => {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          const easeOutQuad = 1 - (1 - progress) * (1 - progress);
-          setCount(Math.round(easeOutQuad * value));
-          
-          if (progress < 1) {
-            requestAnimationFrame(animate);
-          }
-        };
-        requestAnimationFrame(animate);
-        observer.disconnect();
-      }
-    });
-
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [value]);
-
-  return (
-    <span ref={ref} style={{ whiteSpace: 'nowrap', display: 'inline-block' }}>
-      {prefix}{count}{suffix}
-    </span>
-  );
-}
 import { toast } from "sonner";
 import {
   ArrowDown,
@@ -412,17 +378,19 @@ export default function Home() {
             <div className="hero-copy" data-reveal>
               <div className="eyebrow light-eyebrow"><span className="eyebrow-line" /> TECNOLOGIA TRANSFORMA NEGÓCIOS.</div>
               <h1 className="hero-heading" style={{ fontFamily: '"Playfair Display", serif', fontWeight: 600 }}>
-                Transforme Tecnologia em <em style={{ color: 'var(--gold)' }}>Resultados Reais.</em>
+                Decisões melhores. <em style={{ color: 'var(--gold)' }}>Resultados maiores.</em>
               </h1>
               <p className="hero-subtitle">
-                Há mais de 32 anos atuando entre Tecnologia, Estratégia e Negócios, ajudando empresas a transformar tecnologia em resultados e profissionais a tomarem melhores decisões sobre suas carreiras.
+                Toda evolução importante começa por decisões: para onde levar sua carreira, como desenvolver sua liderança, como fazer sua empresa crescer ou onde concentrar tempo, energia e investimentos.<br /><br />
+                Através de Mentoria, Advisory e Consultoria, ajudo profissionais e empresários a transformar desafios em decisões mais claras, ações estruturadas e resultados concretos.<br /><br />
+                Experiência executiva ao seu lado para ajudar você a chegar mais longe.
               </p>
               <div className="hero-actions">
-                <a className="button button-gold" href="#contato" onClick={handleSectionNavigation}>
-                  ENTRAR EM CONTATO <ArrowUpRight size={18} aria-hidden="true" />
+                <a className="button button-gold" href="#mentoria" onClick={handleSectionNavigation}>
+                  QUERO ACELERAR MINHA CARREIRA <ArrowUpRight size={18} aria-hidden="true" />
                 </a>
-                <a className="text-link light-link" href="#servicos" onClick={handleSectionNavigation}>
-                  CONHECER SERVIÇOS <ArrowDown size={16} aria-hidden="true" />
+                <a className="button button-gold" href="#servicos" onClick={handleSectionNavigation}>
+                  QUERO EVOLUIR MINHA EMPRESA <ArrowDown size={16} aria-hidden="true" />
                 </a>
               </div>
             </div>
@@ -431,30 +399,7 @@ export default function Home() {
           </div>
         </section>
 
-        {/* PROPOSTA DE VALOR */}
-        <section className="section" id="proposta-valor" style={{ padding: '6rem 0 3rem' }}>
-          <div className="container">
-            <div data-reveal style={{ textAlign: 'center', maxWidth: '800px', margin: '0 auto' }}>
-              <div className="eyebrow" style={{ justifyContent: 'center' }}><span className="eyebrow-line" /> O DESAFIO E A SOLUÇÃO</div>
-              <h2 style={{ 
-                fontFamily: '"Playfair Display", serif', 
-                fontSize: 'clamp(2rem, 4vw, 2.5rem)', 
-                lineHeight: 1.2, 
-                marginTop: '1.5rem', 
-                marginBottom: '1.5rem',
-                color: 'var(--navy)'
-              }}>
-                A tecnologia não gera resultados sozinha.<br /> <em>Líderes estratégicos sim.</em>
-              </h2>
-              <p style={{ fontSize: '1.15rem', lineHeight: 1.7, color: '#4a5568', marginBottom: '1.5rem' }}>
-                A maioria das empresas investe pesado em TI sem ver retorno claro no negócio. Ao mesmo tempo, excelentes líderes técnicos enfrentam barreiras porque não conseguem traduzir a tecnologia para a linguagem estratégica do conselho.
-              </p>
-              <p style={{ fontSize: '1.15rem', lineHeight: 1.7, color: '#4a5568' }}>
-                Com mais de <strong>32 anos de experiência</strong> conectando estratégia, operações e tecnologia, eu fecho essa lacuna. Ajudo empresas a transformarem TI em vantagem competitiva real e oriento profissionais a conquistarem autoridade e acelerarem suas carreiras executivas.
-              </p>
-            </div>
-          </div>
-        </section>
+
 
         {/* MENTORIA RESULT */}
         <section className="section credentials-section dark-section" id="mentoria" aria-labelledby="mentoria-title">
@@ -518,7 +463,26 @@ export default function Home() {
                 <div className="eyebrow"><span className="eyebrow-line" /> Outras Formas de Atuação</div>
                 <h2 id="services-title">Consultoria e <em>Advisory</em>.</h2>
               </div>
-              <p>Experiência prática para orientar as decisões mais importantes de tecnologia na sua empresa, através de projetos estruturados ou aconselhamento executivo.</p>
+              <div style={{ marginTop: '1.5rem', marginBottom: '3rem' }}>
+                <p>Sua empresa investe em tecnologia. <strong>Mas ela realmente gera resultado?</strong></p>
+                <p style={{ marginTop: '0.75rem' }}>ERP, CRM, Inteligência Artificial, dados, automação, Cloud, cibersegurança...</p>
+                <p style={{ marginTop: '0.75rem' }}>Nunca houve tantas possibilidades — e talvez nunca tenha sido tão difícil para um empresário decidir onde investir, o que priorizar e o que realmente pode gerar valor para o negócio.</p>
+                <p style={{ marginTop: '0.75rem' }}>Muitas empresas possuem bons sistemas, fornecedores e equipes, mas continuam convivendo com problemas conhecidos:</p>
+                <ul style={{ listStyle: 'none', padding: 0, marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+                  <li>💰 Investimentos elevados em tecnologia sem conseguir demonstrar o retorno;</li>
+                  <li>📊 Muitos dados e pouca informação para tomar decisões;</li>
+                  <li>⚙️ Processos ineficientes sendo simplesmente digitalizados;</li>
+                  <li>🖥️ ERP e CRM utilizados muito abaixo do seu potencial;</li>
+                  <li>🤖 Pressão para investir em IA sem saber onde existe um verdadeiro caso de negócio;</li>
+                  <li>🔌 Sistemas que não conversam e geram controles paralelos e retrabalho;</li>
+                  <li>📈 Tecnologia distante das prioridades estratégicas da empresa;</li>
+                  <li>🔐 Riscos de segurança e continuidade que o empresário nem sempre consegue enxergar;</li>
+                  <li>❓ Dificuldade para avaliar se aquilo que a equipe ou os fornecedores estão propondo realmente faz sentido.</li>
+                </ul>
+                <p style={{ marginTop: '1.5rem' }}><strong>É justamente nesse ponto que posso ajudar.</strong></p>
+                <p style={{ marginTop: '0.75rem' }}>Você não precisa se tornar especialista em tecnologia para tomar boas decisões sobre tecnologia.</p>
+                <p style={{ marginTop: '0.75rem' }}>Como seu Advisor, atuo ao lado do empresário e da liderança para traduzir tecnologia para a linguagem dos negócios, questionar investimentos, identificar oportunidades e ajudar a definir prioridades.</p>
+              </div>
             </div>
             
             <div className="services-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))' }}>
@@ -567,44 +531,16 @@ export default function Home() {
             </div>
             <div className="about-copy" data-reveal style={{ transitionDelay: "120ms" }}>
               <div className="eyebrow"><span className="eyebrow-line" /> Sobre Mim</div>
-              <h2 id="about-title">A autoridade se constrói na <em>prática.</em></h2>
-              <p>São mais de 32 anos liderando grandes transformações, desde implantações complexas de ERP e Cloud até reestruturações de times e operações no Brasil e no exterior (China, Indonésia, Paraguai).</p>
-              <p>Já ocupei as cadeiras de decisão. Sei exatamente o que o C-Level espera da Tecnologia e o que falta nos líderes técnicos para ascenderem na carreira corporativa.</p>
-              <p>Minha missão agora é encurtar o caminho de quem precisa de resultados: tanto empresas buscando eficiência quanto profissionais buscando protagonismo.</p>
+              <h2 id="about-title">Experiência não serve apenas para contar histórias. <em>Serve para encurtar caminhos.</em></h2>
+              <p>São mais de 32 anos vivendo os desafios reais da gestão: liderando transformações, tomando decisões, formando equipes, conduzindo projetos complexos e enfrentando os problemas que fazem parte da rotina de quem ocupa posições de responsabilidade.</p>
+              <p>Minha trajetória passou por diferentes empresas, segmentos e culturas, com projetos no Brasil, China, Indonésia e Paraguai e experiências em transformação empresarial, tecnologia, processos, ERP, Cloud, governança e gestão.</p>
+              <p>Já estive dos dois lados da mesa: como executivo responsável por entregar resultados e como profissional diante das escolhas, riscos e incertezas que acompanham uma carreira.</p>
+              <p>Hoje transformo essa experiência em Mentoria, Advisory e Consultoria, compartilhando não apenas conhecimento, mas principalmente aprendizados construídos ao longo de mais de três décadas de decisões, acertos, erros e resultados.</p>
+              <p>Meu propósito é simples: usar a experiência que acumulei para ajudar profissionais e empresários a tomarem melhores decisões e encurtarem seus caminhos.</p>
             </div>
           </div>
           
-          <div className="container" style={{ marginTop: '6rem' }}>
-            <div className="eyebrow" data-reveal><span className="eyebrow-line" /> Resultados da Trajetória</div>
-            <div className="trust-grid" data-reveal style={{ marginTop: '2rem' }}>
-              <div className="trust-item"><span className="trust-number"><strong><CountUp value={32} suffix="+" /></strong></span><span>Anos de experiência</span></div>
-              <div className="trust-item"><span className="trust-number"><strong><CountUp value={20} suffix="+" /></strong></span><span>Implantações ERP e CRM</span></div>
-              <div className="trust-item"><span className="trust-number"><strong><CountUp prefix="R$ " value={13} suffix="M+" /></strong></span><span>Orçamentos gerenciados</span></div>
-              <div className="trust-item"><span className="trust-number"><strong><CountUp value={18} suffix="%" /></strong></span><span>Otimização de custos</span></div>
-              <div className="trust-item"><span className="trust-number"><strong><CountUp value={20} suffix="%+" /></strong></span><span>Redução de estruturas via automação</span></div>
-            </div>
-          </div>
 
-          <div className="container" style={{ marginTop: '6rem' }}>
-            <div className="eyebrow" data-reveal><span className="eyebrow-line" /> Formação</div>
-            <div className="credentials-grid" data-reveal style={{ marginTop: '2rem', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))' }}>
-              <article className="credential-card" style={{ padding: '2rem', textAlign: 'center' }}>
-                <GraduationCap size={32} style={{ margin: '0 auto 1rem', color: '#C6A87C' }} />
-                <h3>Harvard Business School</h3>
-                <p>Disruptive Strategy</p>
-              </article>
-              <article className="credential-card" style={{ padding: '2rem', textAlign: 'center' }}>
-                <GraduationCap size={32} style={{ margin: '0 auto 1rem', color: '#C6A87C' }} />
-                <h3>Fundação Dom Cabral</h3>
-                <p>Programa de Desenvolvimento de Executivos</p>
-              </article>
-              <article className="credential-card" style={{ padding: '2rem', textAlign: 'center' }}>
-                <GraduationCap size={32} style={{ margin: '0 auto 1rem', color: '#C6A87C' }} />
-                <h3>PUC Minas</h3>
-                <p>MBA – Gestão de Negócios</p>
-              </article>
-            </div>
-          </div>
         </section>
 
         {/* PALESTRAS */}

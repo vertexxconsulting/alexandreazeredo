@@ -983,3 +983,47 @@ h1 em, h2 em { color: var(--gold-light); font-style: italic; }
 .animate-fade-in {
   animation: fadeIn 300ms ease-out forwards;
 }
+
+/* Consulting Layout */
+.consulting-card {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 2.5rem;
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+  border: 1px solid rgba(10,31,61,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+}
+
+.consulting-grid {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.consulting-item {
+  padding: 1.25rem;
+  background-color: #f9f9fa;
+  border-radius: 4px;
+  border-left: 4px solid var(--gold);
+  display: flex;
+  align-items: center;
+}
+
+.consulting-item span {
+  color: var(--navy);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .consulting-card {
+    padding: 1.5rem;
+  }
+  .consulting-grid {
+    grid-template-columns: 1fr;
+  }
+}

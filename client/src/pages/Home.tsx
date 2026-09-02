@@ -473,52 +473,38 @@ export default function Home() {
               </div>
             </div>
 
-            <div data-reveal style={{ 
-              backgroundColor: '#fff', 
-              borderRadius: '8px', 
-              padding: '2.5rem', 
-              marginTop: '1rem', 
-              marginBottom: '3rem', 
-              border: '1px solid rgba(10,31,61,0.08)', 
-              boxShadow: '0 10px 30px rgba(0,0,0,0.03)' 
-            }}>
+            <div data-reveal className="consulting-card">
               <p style={{ fontWeight: 600, color: 'var(--navy)', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
                 Muitas empresas possuem bons sistemas, fornecedores e equipes, mas continuam convivendo com problemas conhecidos:
               </p>
               
-              <ul style={{ 
-                listStyle: 'none', 
-                padding: 0, 
-                display: 'grid', 
-                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
-                gap: '1.25rem' 
-              }}>
-                <li style={{ padding: '1.25rem', backgroundColor: '#f9f9fa', borderRadius: '4px', borderLeft: '4px solid var(--gold)', display: 'flex', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--navy)', fontSize: '0.95rem', lineHeight: 1.5, fontWeight: 500 }}>Investimentos elevados em tecnologia sem conseguir demonstrar o retorno</span>
+              <ul className="consulting-grid">
+                <li className="consulting-item">
+                  <span>Investimentos elevados em tecnologia sem conseguir demonstrar o retorno</span>
                 </li>
-                <li style={{ padding: '1.25rem', backgroundColor: '#f9f9fa', borderRadius: '4px', borderLeft: '4px solid var(--gold)', display: 'flex', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--navy)', fontSize: '0.95rem', lineHeight: 1.5, fontWeight: 500 }}>Muitos dados e pouca informação para tomar decisões</span>
+                <li className="consulting-item">
+                  <span>Muitos dados e pouca informação para tomar decisões</span>
                 </li>
-                <li style={{ padding: '1.25rem', backgroundColor: '#f9f9fa', borderRadius: '4px', borderLeft: '4px solid var(--gold)', display: 'flex', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--navy)', fontSize: '0.95rem', lineHeight: 1.5, fontWeight: 500 }}>Processos ineficientes sendo simplesmente digitalizados</span>
+                <li className="consulting-item">
+                  <span>Processos ineficientes sendo simplesmente digitalizados</span>
                 </li>
-                <li style={{ padding: '1.25rem', backgroundColor: '#f9f9fa', borderRadius: '4px', borderLeft: '4px solid var(--gold)', display: 'flex', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--navy)', fontSize: '0.95rem', lineHeight: 1.5, fontWeight: 500 }}>ERP e CRM utilizados muito abaixo do seu potencial</span>
+                <li className="consulting-item">
+                  <span>ERP e CRM utilizados muito abaixo do seu potencial</span>
                 </li>
-                <li style={{ padding: '1.25rem', backgroundColor: '#f9f9fa', borderRadius: '4px', borderLeft: '4px solid var(--gold)', display: 'flex', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--navy)', fontSize: '0.95rem', lineHeight: 1.5, fontWeight: 500 }}>Pressão para investir em IA sem saber onde existe um verdadeiro caso de negócio</span>
+                <li className="consulting-item">
+                  <span>Pressão para investir em IA sem saber onde existe um verdadeiro caso de negócio</span>
                 </li>
-                <li style={{ padding: '1.25rem', backgroundColor: '#f9f9fa', borderRadius: '4px', borderLeft: '4px solid var(--gold)', display: 'flex', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--navy)', fontSize: '0.95rem', lineHeight: 1.5, fontWeight: 500 }}>Sistemas que não conversam e geram controles paralelos e retrabalho</span>
+                <li className="consulting-item">
+                  <span>Sistemas que não conversam e geram controles paralelos e retrabalho</span>
                 </li>
-                <li style={{ padding: '1.25rem', backgroundColor: '#f9f9fa', borderRadius: '4px', borderLeft: '4px solid var(--gold)', display: 'flex', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--navy)', fontSize: '0.95rem', lineHeight: 1.5, fontWeight: 500 }}>Tecnologia distante das prioridades estratégicas da empresa</span>
+                <li className="consulting-item">
+                  <span>Tecnologia distante das prioridades estratégicas da empresa</span>
                 </li>
-                <li style={{ padding: '1.25rem', backgroundColor: '#f9f9fa', borderRadius: '4px', borderLeft: '4px solid var(--gold)', display: 'flex', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--navy)', fontSize: '0.95rem', lineHeight: 1.5, fontWeight: 500 }}>Riscos de segurança e continuidade que o empresário nem sempre consegue enxergar</span>
+                <li className="consulting-item">
+                  <span>Riscos de segurança e continuidade que o empresário nem sempre consegue enxergar</span>
                 </li>
-                <li style={{ padding: '1.25rem', backgroundColor: '#f9f9fa', borderRadius: '4px', borderLeft: '4px solid var(--gold)', display: 'flex', alignItems: 'center' }}>
-                  <span style={{ color: 'var(--navy)', fontSize: '0.95rem', lineHeight: 1.5, fontWeight: 500 }}>Dificuldade para avaliar se o que a equipe ou os fornecedores propõem faz sentido</span>
+                <li className="consulting-item">
+                  <span>Dificuldade para avaliar se o que a equipe ou os fornecedores propõem faz sentido</span>
                 </li>
               </ul>
 

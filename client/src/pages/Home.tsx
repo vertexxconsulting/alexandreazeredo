@@ -388,18 +388,12 @@ export default function Home() {
             position: 'relative'
           }}
         >
-          {/* Overlay to darken background (Gradient: Darker on left for text, transparent on right for image) */}
-          <div style={{ 
-            position: 'absolute', 
-            inset: 0, 
-            background: 'linear-gradient(to right, rgba(0, 0, 0, 0.85) 0%, rgba(0, 0, 0, 0.5) 45%, rgba(0, 0, 0, 0.1) 100%)', 
-            zIndex: 1 
-          }}></div>
+          {/* Overlay to darken background */}
+          <div className="hero-gradient-overlay"></div>
 
           {/* Linhas Douradas (Arcos decorativos atrás do Alexandre) */}
-          <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1, pointerEvents: 'none' }}>
+          <div className="hero-gold-arcs">
             <svg width="100%" height="100%" style={{ position: 'absolute', bottom: 0, right: 0 }}>
-              {/* Círculos grandes para criar o efeito de arcos varrendo a tela */}
               <circle cx="85%" cy="110%" r="55%" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeOpacity="0.35" />
               <circle cx="95%" cy="120%" r="65%" fill="none" stroke="var(--gold)" strokeWidth="1" strokeOpacity="0.25" />
               <circle cx="75%" cy="130%" r="75%" fill="none" stroke="var(--gold)" strokeWidth="2" strokeOpacity="0.15" />

@@ -411,17 +411,7 @@ export default function Home() {
           <img 
             src="/images/alexandre.png" 
             alt="Alexandre Azeredo" 
-            style={{
-              position: 'absolute',
-              bottom: 0,
-              right: 'calc(50vw - 360px)', /* Moved even closer to the center/left */
-              height: '82%', 
-              maxHeight: '750px',
-              width: 'auto',
-              zIndex: 2,
-              pointerEvents: 'none',
-              filter: 'drop-shadow(-10px 10px 30px rgba(0,0,0,0.6))'
-            }}
+            className="hero-alex-img"
           />
           
           <div className="container hero-grid" style={{ position: 'relative', zIndex: 3 }}>
@@ -486,7 +476,7 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="mentoria-split" style={{ gridTemplateColumns: '1fr 1fr', gap: '3rem', marginTop: '4rem' }}>
+            <div className="mentoria-split" style={{ marginTop: '4rem' }}>
               <div data-reveal className="credential-card" style={{ padding: '2.5rem', backgroundColor: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.1)' }}>
                 <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem', color: '#fff' }}>Para Profissionais Seniores de TI</h3>
                 <p style={{ marginBottom: '1.5rem', color: 'rgba(255,255,255,0.7)' }}>Gerentes, Heads, Coordenadores e Especialistas que buscam acelerar a carreira executiva.</p>
@@ -592,7 +582,7 @@ export default function Home() {
           
           <div className="container" style={{ marginTop: '6rem' }}>
             <div className="eyebrow" data-reveal><span className="eyebrow-line" /> Resultados da Trajetória</div>
-            <div className="trust-grid" data-reveal style={{ marginTop: '2rem', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))' }}>
+            <div className="trust-grid" data-reveal style={{ marginTop: '2rem' }}>
               <div className="trust-item"><span className="trust-number"><strong><CountUp value={32} suffix="+" /></strong></span><span>Anos de experiência</span></div>
               <div className="trust-item"><span className="trust-number"><strong><CountUp value={20} suffix="+" /></strong></span><span>Implantações ERP e CRM</span></div>
               <div className="trust-item"><span className="trust-number"><strong><CountUp prefix="R$ " value={13} suffix="M+" /></strong></span><span>Orçamentos gerenciados</span></div>
@@ -632,7 +622,7 @@ export default function Home() {
         >
           <div className="container">
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(400px, 1fr))', gap: '4rem', alignItems: 'center' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: 'clamp(2rem, 4vw, 4rem)', alignItems: 'center' }}>
               <div>
                 {/* Heading */}
                 <div data-reveal>

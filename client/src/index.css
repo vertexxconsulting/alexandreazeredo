@@ -194,7 +194,7 @@ h1 em, h2 em { color: var(--gold-light); font-style: italic; }
 .hero-alex-img {
   position: absolute;
   bottom: 0;
-  right: calc(50vw - 360px);
+  right: calc(50vw - 480px);
   height: 82%;
   max-height: 750px;
   width: auto;
@@ -205,7 +205,7 @@ h1 em, h2 em { color: var(--gold-light); font-style: italic; }
 
 @media (max-width: 1050px) {
   .hero-alex-img {
-    right: calc(50vw - 280px);
+    right: calc(50vw - 400px);
   }
 }
 

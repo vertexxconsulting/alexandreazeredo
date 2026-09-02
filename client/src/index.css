@@ -259,7 +259,7 @@ h1 em, h2 em { color: var(--gold-light); font-style: italic; }
 
 .services-section { background: #f4f1ea; }
 .services-section { padding-top: 92px; padding-bottom: 96px; }
-.services-heading { align-items: flex-end; }
+.services-heading { align-items: flex-start; }
 .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 17px; margin-top: 45px; }
 .service-card { position: relative; display: flex; min-height: 380px; flex-direction: column; border: 1px solid rgba(10, 31, 61, 0.14); background: rgba(255, 253, 249, 0.55); padding: 20px 20px 18px; transition: background 180ms ease, border-color 180ms ease, transform 180ms var(--ease-out), box-shadow 180ms ease; }
 .service-card:hover { border-color: var(--gold); background: #fffdf9; box-shadow: 0 20px 40px rgba(10, 31, 61, 0.08); transform: translateY(-7px); }

@@ -463,25 +463,84 @@ export default function Home() {
                 <div className="eyebrow"><span className="eyebrow-line" /> Outras Formas de Atuação</div>
                 <h2 id="services-title">Consultoria e <em>Advisory</em>.</h2>
               </div>
-              <div style={{ marginTop: '1.5rem', marginBottom: '3rem' }}>
-                <p>Sua empresa investe em tecnologia. <strong>Mas ela realmente gera resultado?</strong></p>
-                <p style={{ marginTop: '0.75rem' }}>ERP, CRM, Inteligência Artificial, dados, automação, Cloud, cibersegurança...</p>
+              <div style={{ maxWidth: '500px' }}>
+                <p style={{ fontSize: '1.1rem', color: 'var(--navy)', marginBottom: '0.75rem' }}>Sua empresa investe em tecnologia. <strong>Mas ela realmente gera resultado?</strong></p>
+                <p>ERP, CRM, Inteligência Artificial, dados, automação, Cloud, cibersegurança...</p>
                 <p style={{ marginTop: '0.75rem' }}>Nunca houve tantas possibilidades — e talvez nunca tenha sido tão difícil para um empresário decidir onde investir, o que priorizar e o que realmente pode gerar valor para o negócio.</p>
-                <p style={{ marginTop: '0.75rem' }}>Muitas empresas possuem bons sistemas, fornecedores e equipes, mas continuam convivendo com problemas conhecidos:</p>
-                <ul style={{ listStyle: 'none', padding: 0, marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                  <li>💰 Investimentos elevados em tecnologia sem conseguir demonstrar o retorno;</li>
-                  <li>📊 Muitos dados e pouca informação para tomar decisões;</li>
-                  <li>⚙️ Processos ineficientes sendo simplesmente digitalizados;</li>
-                  <li>🖥️ ERP e CRM utilizados muito abaixo do seu potencial;</li>
-                  <li>🤖 Pressão para investir em IA sem saber onde existe um verdadeiro caso de negócio;</li>
-                  <li>🔌 Sistemas que não conversam e geram controles paralelos e retrabalho;</li>
-                  <li>📈 Tecnologia distante das prioridades estratégicas da empresa;</li>
-                  <li>🔐 Riscos de segurança e continuidade que o empresário nem sempre consegue enxergar;</li>
-                  <li>❓ Dificuldade para avaliar se aquilo que a equipe ou os fornecedores estão propondo realmente faz sentido.</li>
-                </ul>
-                <p style={{ marginTop: '1.5rem' }}><strong>É justamente nesse ponto que posso ajudar.</strong></p>
-                <p style={{ marginTop: '0.75rem' }}>Você não precisa se tornar especialista em tecnologia para tomar boas decisões sobre tecnologia.</p>
-                <p style={{ marginTop: '0.75rem' }}>Como seu Advisor, atuo ao lado do empresário e da liderança para traduzir tecnologia para a linguagem dos negócios, questionar investimentos, identificar oportunidades e ajudar a definir prioridades.</p>
+              </div>
+            </div>
+
+            <div data-reveal style={{ 
+              backgroundColor: '#fff', 
+              borderRadius: '8px', 
+              padding: '2.5rem', 
+              marginTop: '1rem', 
+              marginBottom: '3rem', 
+              border: '1px solid rgba(10,31,61,0.08)', 
+              boxShadow: '0 10px 30px rgba(0,0,0,0.03)' 
+            }}>
+              <p style={{ fontWeight: 600, color: 'var(--navy)', marginBottom: '1.5rem', fontSize: '1.05rem' }}>
+                Muitas empresas possuem bons sistemas, fornecedores e equipes, mas continuam convivendo com problemas conhecidos:
+              </p>
+              
+              <ul style={{ 
+                listStyle: 'none', 
+                padding: 0, 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', 
+                gap: '1.25rem' 
+              }}>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.2rem', marginTop: '2px' }}>💰</span>
+                  <span style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.5 }}>Investimentos elevados em tecnologia sem conseguir demonstrar o retorno;</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.2rem', marginTop: '2px' }}>📊</span>
+                  <span style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.5 }}>Muitos dados e pouca informação para tomar decisões;</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.2rem', marginTop: '2px' }}>⚙️</span>
+                  <span style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.5 }}>Processos ineficientes sendo simplesmente digitalizados;</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.2rem', marginTop: '2px' }}>🖥️</span>
+                  <span style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.5 }}>ERP e CRM utilizados muito abaixo do seu potencial;</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.2rem', marginTop: '2px' }}>🤖</span>
+                  <span style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.5 }}>Pressão para investir em IA sem saber onde existe um verdadeiro caso de negócio;</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.2rem', marginTop: '2px' }}>🔌</span>
+                  <span style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.5 }}>Sistemas que não conversam e geram controles paralelos e retrabalho;</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.2rem', marginTop: '2px' }}>📈</span>
+                  <span style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.5 }}>Tecnologia distante das prioridades estratégicas da empresa;</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.2rem', marginTop: '2px' }}>🔐</span>
+                  <span style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.5 }}>Riscos de segurança e continuidade que o empresário nem sempre consegue enxergar;</span>
+                </li>
+                <li style={{ display: 'flex', alignItems: 'flex-start', gap: '0.75rem' }}>
+                  <span style={{ fontSize: '1.2rem', marginTop: '2px' }}>❓</span>
+                  <span style={{ color: 'var(--slate)', fontSize: '0.9rem', lineHeight: 1.5 }}>Dificuldade para avaliar se aquilo que a equipe ou os fornecedores estão propondo realmente faz sentido.</span>
+                </li>
+              </ul>
+
+              <div style={{ 
+                marginTop: '2rem', 
+                paddingTop: '1.5rem', 
+                borderTop: '1px solid rgba(10,31,61,0.08)',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: '1rem'
+              }}>
+                <p style={{ fontWeight: 600, color: 'var(--navy)', fontSize: '1.05rem' }}>É justamente nesse ponto que posso ajudar.</p>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem' }}>
+                  <p style={{ color: 'var(--slate)', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>Você não precisa se tornar especialista em tecnologia para tomar boas decisões sobre tecnologia.</p>
+                  <p style={{ color: 'var(--slate)', fontSize: '0.95rem', lineHeight: 1.6, margin: 0 }}>Como seu Advisor, atuo ao lado do empresário e da liderança para traduzir tecnologia para a linguagem dos negócios, questionar investimentos, identificar oportunidades e ajudar a definir prioridades.</p>
+                </div>
               </div>
             </div>
             
